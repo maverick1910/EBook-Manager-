@@ -86,85 +86,30 @@
                                  <div class="iq-card-transparent iq-card-block iq-card-stretch iq-card-height">
                                     <div class="iq-card-body p-0">
                                        <div class="row align-items-center">
-                                          <div class="col-3">
-                                             <ul id="description-slider-nav" class="list-inline p-0 m-0  d-flex align-items-center">
-                                                <li>
-                                                   <a href="javascript:void(0);">
-                                                   <img src="images/book-dec/01.jpg" class="img-fluid rounded w-100" alt="">
-                                                   </a>
-                                                </li>
-                                                <li>
-                                                   <a href="javascript:void(0);">
-                                                   <img src="images/book-dec/02.jpg" class="img-fluid rounded w-100" alt="">
-                                                   </a>
-                                                </li>
-                                                <li>
-                                                   <a href="javascript:void(0);">
-                                                   <img src="images/book-dec/03.jpg" class="img-fluid rounded w-100" alt="">
-                                                   </a>
-                                                </li>
-                                                <li>
-                                                   <a href="javascript:void(0);">
-                                                   <img src="images/book-dec/04.jpg" class="img-fluid rounded w-100" alt="">
-                                                   </a>
-                                                </li>
-                                                <li>
-                                                   <a href="javascript:void(0);">
-                                                   <img src="images/book-dec/05.jpg" class="img-fluid rounded w-100" alt="">
-                                                   </a>
-                                                </li>
-                                                <li>
-                                                   <a href="javascript:void(0);">
-                                                   <img src="images/book-dec/06.jpg" class="img-fluid rounded w-100" alt="">
-                                                   </a>
-                                                </li>
-                                             </ul>
-                                          </div>
+                                          
+                                          <% site.forEach(function(sites){%>
                                           <div class="col-9">
                                              <ul id="description-slider" class="list-inline p-0 m-0  d-flex align-items-center">
                                                 <li>
                                                    <a href="javascript:void(0);">
-                                                   <img src="images/book-dec/01.jpg" class="img-fluid w-100 rounded" alt="">
-                                                   </a>
-                                                </li>
-                                                <li>
-                                                   <a href="javascript:void(0);">
-                                                   <img src="images/book-dec/02.jpg" class="img-fluid w-100 rounded" alt="">
-                                                   </a>
-                                                </li>
-                                                <li>
-                                                   <a href="javascript:void(0);">
-                                                   <img src="images/book-dec/03.jpg" class="img-fluid w-100 rounded" alt="">
-                                                   </a>
-                                                </li>
-                                                <li>
-                                                   <a href="javascript:void(0);">
-                                                   <img src="images/book-dec/04.jpg" class="img-fluid w-100 rounded" alt="">
-                                                   </a>
-                                                </li>
-                                                <li>
-                                                   <a href="javascript:void(0);">
-                                                   <img src="images/book-dec/05.jpg" class="img-fluid w-100 rounded" alt="">
-                                                   </a>
-                                                </li>
-                                                <li>
-                                                   <a href="javascript:void(0);">
-                                                   <img src="images/book-dec/06.jpg" class="img-fluid w-100 rounded" alt="">
+                                                   <img src="<%=sites.image%>" class="img-fluid w-1000 rounded" style="width:700px;margin-left: ;" alt="">
                                                    </a>
                                                 </li>
                                              </ul>
+                                          <%})%>
                                           </div>
                                        </div>
                                     </div>
                                  </div>
                               </div>
+                              <% site.forEach(function(sites){%>
                               <div class="col-md-6">
                                  <div class="iq-card-transparent iq-card-block iq-card-stretch iq-card-height">
                                     <div class="iq-card-body p-0">
-                                       <h3 class="mb-3">A Casey Christi night books in the raza Dakota Krout</h3>
+                                       <h3 class="mb-3"><%=sites.title%></h3>
                                        <div class="price d-flex align-items-center font-weight-500 mb-2">
-                                          <span class="font-size-20 pr-2 old-price">$99</span>
-                                          <span class="font-size-24 text-dark">$48</span>
+                                         
+                                          <span class="font-size-24 text-dark"><%=sites.price%></span>
                                        </div>
                                        <div class="mb-3 d-block">
                                           <span class="font-size-20 text-warning">
@@ -175,10 +120,10 @@
                                           <i class="fa fa-star"></i>
                                           </span>
                                        </div>
-                                       <span class="text-dark mb-4 pb-4 iq-border-bottom d-block">Monterhing in the best book testem ipsum is simply dtest in find in a of the printing and typeseting industry into to end.in find in a of the printing and typeseting industry in find to make it all done into end.</span>
-                                       <div class="text-primary mb-4">Author: <span class="text-body">Jhone Steben</span></div>
+                                       <span class="text-dark mb-4 pb-4 iq-border-bottom d-block"><%=sites.body%></span>
+                                       <div class="text-primary mb-4">Author: <span class="text-body"><%=sites.author%></span></div>
                                        <div class="mb-4 d-flex align-items-center">                                       
-                                          <a href="#" class="btn btn-primary view-more mr-2">Add To Cart</a>
+                                          <a href="#" class="btn btn-primary view-more mr-2">Download PDF</a>
                                           <a href="book-pdf.html" class="btn btn-primary view-more mr-2">Read Sample</a>
                                        </div>
                                        <div class="mb-3">
@@ -204,6 +149,7 @@
                                     </div>
                                  </div>
                               </div>
+                              <%})%>
                            </div>
                         </div>
                      </div>

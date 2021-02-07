@@ -176,27 +176,35 @@
                      </div>
                      <div class="iq-card-body">
                         <div class="new-user-info">
-                           <form>
+                           <form action="/index" method="POST">
                               <div class="row">
                                  <div class="form-group col-md-6">
                                     <label for="fname">Book Name</label>
-                                    <input type="text" class="form-control" id="fname" placeholder="Name">
+                                    <input type="text" class="form-control" id="fname" placeholder="Name" name="site[title]">
+                                 </div>
+                                 <div class="form-group col-md-6">
+                                    <label for="fname">Book Image</label>
+                                    <input type="text" class="form-control" id="fname" placeholder="Name" name="site[image]">
                                  </div>
                                  <div class="form-group col-md-6">
                                     <label for="lname">Book Category</label>
-                                    <input type="text" class="form-control" id="lname" placeholder="Genre">
+                                    <input type="text" class="form-control" id="lname" placeholder="Genre" name="site[category]">
                                  </div>
                                  <div class="form-group col-md-6">
                                     <label for="add1">Book Author</label>
-                                    <input type="text" class="form-control" id="add1" placeholder="Author">
+                                    <input type="text" class="form-control" id="add1" placeholder="Author" name="site[author]">
                                  </div>
                                  <div class="form-group col-md-6">
                                     <label for="add2">Book Description</label>
-                                    <textarea name="" id="" cols="30" rows="05" class="form-control"></textarea>
+                                    <textarea name="" id="" cols="30" rows="05" class="form-control" name="site[body]"></textarea>
                                  </div>
                                  <div class="form-group col-md-12">
                                     <label for="cname">Book Price</label>
-                                    <input type="text" class="form-control" id="cname" placeholder="Price">
+                                    <input type="text" class="form-control" id="cname" placeholder="Price" name="site[price]">
+                                 </div>
+                                 <div class="form-group col-md-12">
+                                    <label for="cname">Book Link</label>
+                                    <input type="text" class="form-control" id="cname" placeholder="Price" name="site[file]">
                                  </div>
                                  
                               </div>

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+   
+<!-- Mirrored from iqonic.design/themes/Perify/html/add-user.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 29 Jan 2021 10:02:41 GMT -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <link rel="stylesheet" href="/stylesheets/app.css">
+    <title>Tech Blog</title>
+</head>
+<body>
+    
+        
+    </div>
+       <!-- TOP Nav Bar END -->
+      <!-- Page Content  -->
+      <div id="set" class="ui main text container segment">
+         <div id="main" class="ui huge header"></div>
+         <form class="ui form" action="/index/<%=site._id%>?_method=PUT" method="POST">
+             <h1>Edit <%=site.title%></h1>
+             <div class="field">
+                 <label for="">Title</label>
+                 <input type="text" name="site[title]" value="<%=site.title%>">
+             </div>
+             <div class="field">
+                 <label for="">Image URL</label>
+                 <input type="text" name="site[image]" value="<%=site.image%>">
+             </div>
+             <div class="field">
+                 <label for="">Category</label>
+                 <input type="text" name="site[image]" value="<%=site.category%>">
+             </div>
+             <div class="field">
+                 <label for="">Author</label>
+                 <input type="text" name="site[image]" value="<%=site.author%>">
+             </div>
+             <div class="field">
+                 <label for="">Price</label>
+                 <input type="text" name="site[image]" value="<%=site.price%>">
+             </div>
+             
+             <input class="ui violet inverted big button" type="submit">
+         </form>
+     </div>
+   </div>
+</body>
+</html>
+   <!-- Wrapper END -->
+    <!-- Footer -->
+      
