@@ -6,7 +6,7 @@
       <!-- Required meta tags -->
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <title>Perify - Register</title>
+      <title>Perify - Buy</title>
       <!-- Favicon -->
       <link rel="shortcut icon" href="images/favicon.ico" />
       <!-- Bootstrap CSS -->
@@ -53,7 +53,7 @@
                                       
                                       <optgroup label="Book Name">
                                         <% site.forEach(function(sites){%>
-                                          <option name="" value="0"><%=sites.title%></option>
+                                          <option name="" value="<%=sites.title%>"><%=sites.title%></option>
                                         <%})%> 
                                       </optgroup>
                                   </select>
@@ -64,7 +64,7 @@
                                       
                                       <optgroup label="Book Link">
                                         <% site.forEach(function(sites){%>
-                                          <option name="" value="0"><%=sites.file%></option>
+                                          <option name="" value="<%=sites.file%>"><%=sites.file%></option>
                                         <%})%> 
                                       </optgroup>
                                   </select>
@@ -90,7 +90,7 @@
            <div class="buy-button"> <a class="color-full" href="#"><i class="fa fa-spinner fa-spin"></i></a> </div>
            <div class="clearfix color-picker">
                <h3 class="iq-font-black">Perify Awesome Color</h3>
-               <p>This color combo available inside whole template. You can change on your wish, Even you can create your own with limitless possibilities! </p>
+               <p>This color combo available inside website. You can change on your wish, Even you can create your own with limitless possibilities! </p>
                <ul class="iq-colorselect clearfix">
                    <li class="color-1 iq-colormark" data-style="color-1"></li>
                    <li class="color-2" data-style="iq-color-2"></li>

@@ -27,12 +27,12 @@ mongoose.connection.on('connected', () =>{
 });
 
 //Routes
+app.get('/sign-in',function(req,res){
+    res.render('sign-in')
+})
+
+
 app.get('/',function(req,res){
-    res.render('sign-in');
-});
-
-
-app.get('/index',function(req,res){
     Site.find({},function(err,sites){
         if(err)
         {
@@ -40,6 +40,17 @@ app.get('/index',function(req,res){
         }
         else{
             res.render('index',{site:sites});
+        }
+    });
+});
+app.get('/admin',function(req,res){
+    Site.find({},function(err,sites){
+        if(err)
+        {
+            console.log(err)
+        }
+        else{
+            res.render('admin-books',{site:sites});
         }
     });
 });
@@ -63,9 +74,10 @@ app.get('/buy',function(req,res){
 app.post('/confirm',function(req,res){
     fname=req.body.fname;
     email=req.body.email;
-    bname=req.query.bname;
-    bfile=req.query.bfile;
+    bname=req.body.bname;
+    bfile=req.body.bfile;
     phno=req.body.phno;
+    console.log(req.body)
     
     
         client.messages
@@ -95,6 +107,17 @@ app.get('/adminbooks',function(req,res){
         }
     });
 });
+app.get('/category',function(req,res){
+    Site.find({},function(err,sites){
+        if(err)
+        {
+            console.log(err)
+        }
+        else{
+            res.render('category',{site:sites});
+        }
+    });
+});
 
 
 app.get('/add',function(req,res){
@@ -102,8 +125,9 @@ app.get('/add',function(req,res){
 });
 
 
+
 // Redirect to main after creating new blog
-app.post('/index',function(req,res){
+app.post('/',function(req,res){
     
     Site.create(req.body.site,function(err,newsite){
         if(err){
