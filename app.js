@@ -1,16 +1,21 @@
 var PORT= process.env.PORT || 3000;
 var express=require("express");
 var mongoose=require('mongoose');
+var passport=require('passport');
+const LocalStrategy = require('passport-local').Strategy
 const app=express();
 var bodyparser=require("body-parser");
 var methodOverride=require("method-override");
 require('dotenv').config();
 
 var Site= require('./models/db');
+var User= require('./models/user');
 
 app.set("view engine","ejs");
 app.use(express.static("public"));
 app.use(bodyparser.urlencoded({extended:true}));
+const flash = require('express-flash')
+const session = require('express-session')
 app.use(methodOverride("_method"));
 
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
@@ -43,7 +48,7 @@ app.get('/',function(req,res){
         }
     });
 });
-app.get('/admin',function(req,res){
+app.get('/admin',checkAuthenticated,function(req,res){
     Site.find({},function(err,sites){
         if(err)
         {
@@ -54,10 +59,64 @@ app.get('/admin',function(req,res){
         }
     });
 });
+// const newUser= new User({username:"admin@perify.com",
+// password:"admin"
+// });
+//    newUser.save((error)=>{
+//        if(error){
+//            res.status(500).json({msg:"Server Error"});
+//        }
+//        else{  console.log("done");
+//        ;
+//    }
+//    })
+var auth=false
+
+passport.use(new LocalStrategy(
+    function(username, password, done) {
+        
+       User.findOne({ username: username }, function (err, user) {
+        if (err) { return done(err); }
+         if (!user) { return done(null, false); }
+         if (user.password!=password) { return done(null, false); }
+         auth=true
+         return done(null, user);
+       });
+    }
+  ));
+  app.use(passport.initialize())
+  app.use(session({
+    secret:'secret',
+    resave: false,
+    saveUninitialized: false
+  }))
+  app.use(passport.session())
+  
+  passport.serializeUser((user, done) => done(null, user.id))
+  passport.deserializeUser((id, done) => {
+    return done(null, getUserById(id))
+  })
+ app.post('/login', 
+  passport.authenticate('local', { failureRedirect: '/sign-in' ,successRedirect: '/admin',failureFlash: true}),
+  function(req, res) {
+    res.redirect('/admin');
+  });
 
 
-
-
+  function checkAuthenticated(req, res, next) {
+    if (auth) {
+      return next()
+    }
+  
+    res.redirect('/sign-in')
+  }
+  function checkNotAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+      return res.redirect('/admin')
+    }
+    next()
+  }
+  
 
 app.get('/buy',function(req,res){
     Site.find({},function(err,sites){
