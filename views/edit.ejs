@@ -19,7 +19,7 @@
       <!-- Page Content  -->
       <div id="set" class="ui main text container segment">
          <div id="main" class="ui huge header"></div>
-         <form class="ui form" action="/index/<%=site._id%>?_method=PUT" method="POST">
+         <form class="ui form" action="/edited?title=<%=site.title%>" method="POST">
              <h1>Edit <%=site.title%></h1>
              <div class="field">
                  <label for="">Title</label>
@@ -31,15 +31,15 @@
              </div>
              <div class="field">
                  <label for="">Category</label>
-                 <input type="text" name="site[image]" value="<%=site.category%>">
+                 <input type="text" name="site[category]" value="<%=site.category%>">
              </div>
              <div class="field">
                  <label for="">Author</label>
-                 <input type="text" name="site[image]" value="<%=site.author%>">
+                 <input type="text" name="site[author]" value="<%=site.author%>">
              </div>
              <div class="field">
                  <label for="">Price</label>
-                 <input type="text" name="site[image]" value="<%=site.price%>">
+                 <input type="text" name="site[price]" value="<%=site.price%>">
              </div>
              
              <input class="ui violet inverted big button" type="submit">

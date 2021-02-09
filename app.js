@@ -153,8 +153,34 @@ app.post('/confirm',function(req,res){
 
 })
 
+app.post('/delete',function (req,res){
+console.log(req.query.id)
+Site.findOne({_id: req.query.id}, function (error, site){
+    
+    site.remove();
 
+});
+res.redirect('/admin')
+})
+app.post('/edit',function (req,res){
+    console.log(req.query.id)
+    Site.findOne({_id: req.query.id}, function (error, sites){
+    
+        res.render('edit',{site:sites})
+    
+    });
+});
+app.post('/edited',function (req,res){
+    console.log(req.query.title)
+    console.log(req.body)
+    
+     Site.updateOne({title:req.query.title}, req.body.site, function(err, res) {
+        if (err) throw err;
+        console.log("1 document updated");
 
+         });
+         res.redirect('/admin')
+});
 app.get('/adminbooks',function(req,res){
     Site.find({},function(err,sites){
         if(err)
@@ -186,7 +212,7 @@ app.get('/add',function(req,res){
 
 
 // Redirect to main after creating new blog
-app.post('/',function(req,res){
+app.post('/index',function(req,res){
     
     Site.create(req.body.site,function(err,newsite){
         if(err){
