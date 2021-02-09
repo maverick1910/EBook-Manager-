@@ -1,3 +1,4 @@
+// Declare Packages
 var PORT= process.env.PORT || 3000;
 var express=require("express");
 var mongoose=require('mongoose');
@@ -8,9 +9,11 @@ var bodyparser=require("body-parser");
 var methodOverride=require("method-override");
 require('dotenv').config();
 
+//Database Schemas
 var Site= require('./models/db');
 var User= require('./models/user');
 
+//Init Configurations for Packages 
 app.set("view engine","ejs");
 app.use(express.static("public"));
 app.use(bodyparser.urlencoded({extended:true}));
@@ -18,11 +21,12 @@ const flash = require('express-flash')
 const session = require('express-session')
 app.use(methodOverride("_method"));
 
+//Twilio API Passkeys 
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AITH_TOKEN;
 const client = require('twilio')(accountSid, authToken);
 
-
+//Database Connection
 mongoose.connect( 'mongodb+srv://akkhill1910:konduruakhil@ebook.fn8xk.mongodb.net/perify?retryWrites=true&w=majority' ,{
     useNewUrlParser:true,
     useUnifiedTopology:true
@@ -31,12 +35,13 @@ mongoose.connection.on('connected', () =>{
     console.log('Mongoose is connected');
 });
 
-//Routes
+
+
+
+// GET Routes//
 app.get('/sign-in',function(req,res){
     res.render('sign-in')
-})
-
-
+});
 app.get('/',function(req,res){
     Site.find({},function(err,sites){
         if(err)
@@ -48,7 +53,6 @@ app.get('/',function(req,res){
         }
     });
 });
-
 app.get('/index',function(req,res){
     Site.find({},function(err,sites){
         if(err)
@@ -71,7 +75,49 @@ app.get('/admin',checkAuthenticated,function(req,res){
         }
     });
 });
+app.get('/adminbooks',function(req,res){
+    Site.find({},function(err,sites){
+        if(err)
+        {
+            console.log(err)
+        }
+        else{
+            res.render('admin-books',{site:sites});
+        }
+    });
+});
+app.get('/category',function(req,res){
+    Site.find({},function(err,sites){
+        if(err)
+        {
+            console.log(err)
+        }
+        else{
+            res.render('category',{site:sites});
+        }
+    });
+});
+app.get('/add',function(req,res){
+    res.render('add-book')
+});
+app.get('/buy',function(req,res){
+    Site.find({},function(err,sites){
+        if(err)
+        {
+            console.log(err)
+        }
+        else{
+            res.render('sign-up',{site:sites});
+        }
+    });
+});
 
+
+
+
+
+
+//Authentication for Admin Page
 var auth=false
 
 passport.use(new LocalStrategy(
@@ -98,6 +144,11 @@ passport.use(new LocalStrategy(
   passport.deserializeUser((id, done) => {
     return done(null, getUserById(id))
   })
+
+
+
+
+  //Post Route for Login to Admin Page
  app.post('/login', 
   passport.authenticate('local', { failureRedirect: '/sign-in' ,successRedirect: '/admin',failureFlash: true}),
   function(req, res) {
@@ -120,18 +171,10 @@ passport.use(new LocalStrategy(
   }
   
 
-app.get('/buy',function(req,res){
-    Site.find({},function(err,sites){
-        if(err)
-        {
-            console.log(err)
-        }
-        else{
-            res.render('sign-up',{site:sites});
-        }
-    });
-});
 
+
+
+//Post Method for Twilio API Messages
 app.post('/confirm',function(req,res){
     fname=req.body.fname;
     email=req.body.email;
@@ -156,37 +199,6 @@ app.post('/confirm',function(req,res){
 })
 
 
-
-app.get('/adminbooks',function(req,res){
-    Site.find({},function(err,sites){
-        if(err)
-        {
-            console.log(err)
-        }
-        else{
-            res.render('admin-books',{site:sites});
-        }
-    });
-});
-app.get('/category',function(req,res){
-    Site.find({},function(err,sites){
-        if(err)
-        {
-            console.log(err)
-        }
-        else{
-            res.render('category',{site:sites});
-        }
-    });
-});
-
-
-app.get('/add',function(req,res){
-    res.render('add-book')
-});
-
-
-
 // Redirect to main after creating new blog
 app.post('/',function(req,res){
     
@@ -200,4 +212,6 @@ app.post('/',function(req,res){
     });
 });
 
+
+//Listner Port for Localhost and Hosting
 app.listen(PORT,console.log('Server Up !!'));
