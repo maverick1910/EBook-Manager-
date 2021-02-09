@@ -48,6 +48,18 @@ app.get('/',function(req,res){
         }
     });
 });
+
+app.get('/index',function(req,res){
+    Site.find({},function(err,sites){
+        if(err)
+        {
+            console.log(err)
+        }
+        else{
+            res.render('index',{site:sites});
+        }
+    });
+});
 app.get('/admin',checkAuthenticated,function(req,res){
     Site.find({},function(err,sites){
         if(err)
@@ -59,17 +71,7 @@ app.get('/admin',checkAuthenticated,function(req,res){
         }
     });
 });
-// const newUser= new User({username:"admin@perify.com",
-// password:"admin"
-// });
-//    newUser.save((error)=>{
-//        if(error){
-//            res.status(500).json({msg:"Server Error"});
-//        }
-//        else{  console.log("done");
-//        ;
-//    }
-//    })
+
 var auth=false
 
 passport.use(new LocalStrategy(
