@@ -212,7 +212,7 @@ app.get('/add',function(req,res){
 
 
 // Redirect to main after creating new blog
-app.post('/index',function(req,res){
+app.post('/',function(req,res){
     
     Site.create(req.body.site,function(err,newsite){
         if(err){
