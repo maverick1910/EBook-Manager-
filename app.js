@@ -189,10 +189,10 @@ app.post('/edit',function (req,res){
     });
 });
 app.post('/edited',function (req,res){
-    console.log(req.query.title)
+    console.log(req.query.id)
     console.log(req.body)
 
-     Site.updateOne({title:req.query.title}, req.body.site, function(err, res) {
+     Site.updateOne({_id:req.query.id}, req.body.site, function(err, res) {
         if (err) throw err;
         console.log("1 document updated");
 

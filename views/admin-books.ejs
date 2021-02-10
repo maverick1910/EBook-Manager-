@@ -179,10 +179,10 @@
                                         <td><a href="<%=sites.file%>"><i class="ri-file-fill text-secondary font-size-18"></i></a></td>                                        
                                         <td>
                                            <div class="flex align-items-center list-user-action">
-                                             <form action="/edit?id=<%=sites.id%>" method="POST">
+                                             <form action="/edit?id=<%=sites._id%>" method="POST">
                                              <button class="btn btn-sm bg-primary" type="submit"> <a class="bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" href="/<%=sites._id%>/edit"><i class="ri-pencil-line"></i></a></button>
                                             </form>
-                                             <form id="delete" action="/delete?id=<%=sites.id%>" method="POST">
+                                             <form id="delete" action="/delete?id=<%=sites._id%>" method="POST">
                                                 <button type="submit" class="btn btn-danger">Delete</button>
                                              </form>
                                           </div>
